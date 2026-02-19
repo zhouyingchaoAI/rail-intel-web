@@ -7,6 +7,7 @@ import SectionHeader from "../../../components/SectionHeader";
 import EmptyState from "../../../components/EmptyState";
 import RadarPlaceholder from "../../../components/RadarPlaceholder";
 import { getCity, getModules } from "../../../lib/api";
+import { alertLevelLabel } from "../../../lib/labels";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
@@ -26,18 +27,18 @@ export default async function CityDetailPage({ params }: { params: { cityId: str
 
   const timeline = [
     {
-      title: "Signal Scan Completed",
-      detail: `Alert level set to ${city.signals.alert_level} with ${city.signals.trend.toLowerCase()} trend.`,
+      title: "信号扫描完成",
+      detail: `预警等级设定为 ${alertLevelLabel(city.signals.alert_level)}，趋势为 ${city.signals.trend.toLowerCase()}。`,
       date: "2026-02-18",
     },
     {
-      title: "Ridership Forecast Updated",
-      detail: `${city.daily_ridership_m}M daily riders confirmed for current operating plan.`,
+      title: "客流预测更新",
+      detail: `当前运营方案确认日均客流 ${city.daily_ridership_m}M。`,
       date: "2026-02-14",
     },
     {
-      title: "Infrastructure Assessment",
-      detail: `Top risk focus: ${city.signals.top_risks.join(", ")}.`,
+      title: "基础设施评估",
+      detail: `重点风险：${city.signals.top_risks.join(", ")}。`,
       date: "2026-02-08",
     },
   ];
@@ -45,7 +46,7 @@ export default async function CityDetailPage({ params }: { params: { cityId: str
   return (
     <div className="space-y-8">
       <Topbar />
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cities", href: "/cities" }, { label: city.name }]} />
+      <Breadcrumbs items={[{ label: "首页", href: "/" }, { label: "城市", href: "/cities" }, { label: city.name }]} />
 
       <section className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
@@ -53,38 +54,38 @@ export default async function CityDetailPage({ params }: { params: { cityId: str
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-fog/60">{city.region}</p>
               <h3 className="text-3xl font-semibold text-white mt-2">{city.name}</h3>
-              <p className="text-sm text-fog/70 mt-2">Scenario intelligence profile and operational readiness overview.</p>
+              <p className="text-sm text-fog/70 mt-2">情景智识画像与运营准备度概览。</p>
             </div>
-            <Badge label={city.signals.alert_level} tone={city.signals.alert_level === "Normal" ? "success" : "warning"} />
+            <Badge label={alertLevelLabel(city.signals.alert_level)} tone={city.signals.alert_level === "Normal" ? "success" : "warning"} />
           </div>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-sm text-fog/80">
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-              <p className="text-xs text-fog/60">Population</p>
+              <p className="text-xs text-fog/60">人口规模</p>
               <p className="text-white">{city.population_m}M</p>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-              <p className="text-xs text-fog/60">Daily Riders</p>
+              <p className="text-xs text-fog/60">日均客流</p>
               <p className="text-white">{city.daily_ridership_m}M</p>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-              <p className="text-xs text-fog/60">Lines</p>
+              <p className="text-xs text-fog/60">线路数量</p>
               <p className="text-white">{city.lines}</p>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-              <p className="text-xs text-fog/60">Stations</p>
+              <p className="text-xs text-fog/60">车站数量</p>
               <p className="text-white">{city.stations}</p>
             </div>
           </div>
         </Card>
 
-        <Card title="Signal Summary">
+        <Card title="信号摘要">
           <div className="space-y-3 text-sm text-fog/70">
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-              <p className="text-xs uppercase tracking-[0.2em] text-fog/60">Trend</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-fog/60">趋势</p>
               <p className="text-white mt-2">{city.signals.trend}</p>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-              <p className="text-xs uppercase tracking-[0.2em] text-fog/60">Top Risks</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-fog/60">重点风险</p>
               <ul className="mt-2 space-y-1 text-fog/80">
                 {city.signals.top_risks.map((risk: string) => (
                   <li key={risk}>• {risk}</li>
@@ -96,23 +97,23 @@ export default async function CityDetailPage({ params }: { params: { cityId: str
       </section>
 
       <section className="space-y-4">
-        <SectionHeader title="Key Performance KPIs" subtitle="Operational Metrics" />
+        <SectionHeader title="关键绩效指标" subtitle="运营指标" />
         <div className="grid gap-6 lg:grid-cols-4">
-          <MetricCard label="Overall Index" value={`${city.overall_index}`} delta="Composite score" trend={[62, 70, 75, 78, 82, 85, 88]} />
-          <MetricCard label="On-Time Rate" value={`${city.on_time_rate}%`} delta="Service punctuality" trend={[68, 70, 72, 74, 77, 79, 82]} />
-          <MetricCard label="Safety Index" value={`${city.safety_index}`} delta="Risk managed" trend={[64, 66, 68, 72, 75, 78, 80]} />
-          <MetricCard label="Sustainability" value={`${city.sustainability_score}`} delta="Emissions tracking" trend={[55, 58, 62, 66, 69, 73, 76]} />
+          <MetricCard label="综合指数" value={`${city.overall_index}`} delta="综合评分" trend={[62, 70, 75, 78, 82, 85, 88]} />
+          <MetricCard label="准点率" value={`${city.on_time_rate}%`} delta="服务准点" trend={[68, 70, 72, 74, 77, 79, 82]} />
+          <MetricCard label="安全指数" value={`${city.safety_index}`} delta="风险受控" trend={[64, 66, 68, 72, 75, 78, 80]} />
+          <MetricCard label="可持续" value={`${city.sustainability_score}`} delta="排放跟踪" trend={[55, 58, 62, 66, 69, 73, 76]} />
         </div>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
-          <SectionHeader title="Module Score Radar" subtitle="Benchmark" />
+          <SectionHeader title="模块评分雷达" subtitle="对标" />
           <RadarPlaceholder scores={moduleScores.map((module) => module.score)} />
         </div>
-        <Card title="Module Scores">
+        <Card title="模块评分">
           {moduleScores.length === 0 ? (
-            <EmptyState title="No Modules" description="Module scores will populate after analytics runs." />
+            <EmptyState title="暂无模块" description="分析完成后将生成模块评分。" />
           ) : (
             <div className="space-y-3 text-sm text-fog/70">
               {moduleScores.map((module: any) => (
@@ -125,7 +126,7 @@ export default async function CityDetailPage({ params }: { params: { cityId: str
                     <div className="h-2 rounded-full bg-moss" style={{ width: `${module.score}%` }} />
                   </div>
                   <Link href={`/modules/${module.id}`} className="mt-3 inline-flex text-xs uppercase tracking-[0.2em] text-pulse hover:text-white">
-                    View Module
+                    查看模块
                   </Link>
                 </div>
               ))}
@@ -135,7 +136,7 @@ export default async function CityDetailPage({ params }: { params: { cityId: str
       </section>
 
       <section className="space-y-4">
-        <SectionHeader title="Timeline Signals" subtitle="Recent Activity" />
+        <SectionHeader title="时间线信号" subtitle="近期动态" />
         <Card>
           <div className="grid gap-4 lg:grid-cols-3">
             {timeline.map((event) => (

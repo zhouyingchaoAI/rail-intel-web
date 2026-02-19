@@ -5,6 +5,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import SectionHeader from "../../components/SectionHeader";
 import EmptyState from "../../components/EmptyState";
 import { getCities } from "../../lib/api";
+import { alertLevelLabel } from "../../lib/labels";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -15,11 +16,11 @@ export default async function CitiesPage() {
   return (
     <div className="space-y-8">
       <Topbar />
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cities" }]} />
+      <Breadcrumbs items={[{ label: "首页", href: "/" }, { label: "城市" }]} />
       <section className="space-y-4">
-        <SectionHeader title="City Overview" subtitle="Portfolio" />
+        <SectionHeader title="城市概况" subtitle="组合" />
         {citiesData.items.length === 0 ? (
-          <EmptyState title="No Cities" description="City intelligence profiles will appear once data feeds are connected." />
+          <EmptyState title="暂无城市" description="数据源接入后将生成城市画像。" />
         ) : (
           <div className="grid gap-6 lg:grid-cols-3">
             {citiesData.items.map((city: any) => (
@@ -32,28 +33,28 @@ export default async function CitiesPage() {
                       <span className="text-sm text-pulse">→</span>
                     </Link>
                   </div>
-                  <Badge label={city.signals.alert_level} tone={city.signals.alert_level === "Normal" ? "success" : "warning"} />
+                  <Badge label={alertLevelLabel(city.signals.alert_level)} tone={city.signals.alert_level === "Normal" ? "success" : "warning"} />
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-fog/80">
                   <div>
-                    <p className="text-xs text-fog/60">Population</p>
+                    <p className="text-xs text-fog/60">人口规模</p>
                     <p className="text-white">{city.population_m}M</p>
                   </div>
                   <div>
-                    <p className="text-xs text-fog/60">Daily Riders</p>
+                    <p className="text-xs text-fog/60">日均客流</p>
                     <p className="text-white">{city.daily_ridership_m}M</p>
                   </div>
                   <div>
-                    <p className="text-xs text-fog/60">Lines</p>
+                    <p className="text-xs text-fog/60">线路数量</p>
                     <p className="text-white">{city.lines}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-fog/60">Stations</p>
+                    <p className="text-xs text-fog/60">车站数量</p>
                     <p className="text-white">{city.stations}</p>
                   </div>
                 </div>
                 <div className="mt-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-fog/60">Top Risks</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-fog/60">重点风险</p>
                   <ul className="mt-2 text-sm text-fog/80 space-y-1">
                     {city.signals.top_risks.map((risk: string) => (
                       <li key={risk}>• {risk}</li>
@@ -61,7 +62,7 @@ export default async function CitiesPage() {
                   </ul>
                 </div>
                 <div className="mt-5 flex items-center justify-between text-sm text-fog/70">
-                  <span>Overall Index</span>
+                  <span>综合指数</span>
                   <span className="text-white">{city.overall_index}</span>
                 </div>
               </Card>
@@ -71,19 +72,19 @@ export default async function CitiesPage() {
       </section>
 
       <section className="space-y-4">
-        <SectionHeader title="Performance Overview" subtitle="Comparative" />
+        <SectionHeader title="绩效概览" subtitle="对标" />
         <Card>
           {citiesData.items.length === 0 ? (
-            <EmptyState title="No Metrics" description="Benchmark metrics will populate after the first ingest cycle." />
+            <EmptyState title="暂无指标" description="首轮数据入库后将呈现对标指标。" />
           ) : (
             <table className="w-full text-sm">
               <thead className="text-xs uppercase text-fog/60">
                 <tr>
-                  <th className="text-left pb-2">City</th>
-                  <th className="text-left pb-2">Overall Index</th>
-                  <th className="text-left pb-2">On-Time</th>
-                  <th className="text-left pb-2">Safety</th>
-                  <th className="text-left pb-2">Sustainability</th>
+                  <th className="text-left pb-2">城市</th>
+                  <th className="text-left pb-2">综合指数</th>
+                  <th className="text-left pb-2">准点率</th>
+                  <th className="text-left pb-2">安全指数</th>
+                  <th className="text-left pb-2">可持续</th>
                 </tr>
               </thead>
               <tbody className="text-fog/80">

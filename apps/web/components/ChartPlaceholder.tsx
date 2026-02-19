@@ -3,7 +3,7 @@ export default function ChartPlaceholder({ label }: { label: string }) {
     <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate/80 to-ink/80 p-4">
       <div className="flex items-center justify-between">
         <p className="text-xs uppercase tracking-[0.3em] text-fog/60">{label}</p>
-        <span className="text-xs text-fog/50">Mock Chart</span>
+        <span className="text-xs text-fog/50">示意图</span>
       </div>
       <svg viewBox="0 0 200 80" className="mt-4 h-20 w-full">
         <defs>

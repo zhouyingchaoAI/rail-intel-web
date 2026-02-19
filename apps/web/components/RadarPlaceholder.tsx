@@ -25,8 +25,8 @@ export default function RadarPlaceholder({ scores }: { scores: number[] }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-slate/80 to-ink/80 p-4">
       <div className="flex items-center justify-between text-xs text-fog/60">
-        <span className="uppercase tracking-[0.3em]">Module Score Radar</span>
-        <span>Placeholder</span>
+        <span className="uppercase tracking-[0.3em]">模块评分雷达</span>
+        <span>示意</span>
       </div>
       <svg viewBox={`0 0 ${baseSize} ${baseSize}`} className="mt-4 h-40 w-full">
         <defs>

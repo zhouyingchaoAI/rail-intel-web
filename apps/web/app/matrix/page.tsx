@@ -22,19 +22,19 @@ export default async function MatrixPage() {
   return (
     <div className="space-y-8">
       <Topbar />
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Scenario Matrix" }]} />
+      <Breadcrumbs items={[{ label: "首页", href: "/" }, { label: "情景矩阵" }]} />
       <section className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
-          <SectionHeader title="Scenario Diagnosis Matrix" subtitle="Intensity" />
+          <SectionHeader title="情景诊断矩阵" subtitle="强度" />
           <Card>
             {rows.length === 0 ? (
-              <EmptyState title="No Matrix" description="Scenario diagnostics will appear once matrix data is available." />
+              <EmptyState title="暂无矩阵" description="矩阵数据就绪后将呈现诊断结果。" />
             ) : (
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
                   <thead className="text-xs uppercase text-fog/60">
                     <tr>
-                      <th className="text-left pb-2 pr-4">Scenario</th>
+                      <th className="text-left pb-2 pr-4">情景</th>
                       {columns.map((col: string) => (
                         <th key={col} className="pb-2 pr-4 text-left">
                           {col}
@@ -62,24 +62,24 @@ export default async function MatrixPage() {
                   </tbody>
                 </table>
                 <div className="mt-4 flex items-center gap-3 text-xs text-fog/60">
-                  <span>Lower</span>
+                  <span>低</span>
                   <div className="h-2 w-24 rounded-full bg-gradient-to-r from-white/5 via-pulse/40 to-pulse" />
-                  <span>Higher</span>
+                  <span>高</span>
                 </div>
               </div>
             )}
           </Card>
         </div>
-        <Card title="Scenario Briefs">
+        <Card title="情景概览">
           {scenariosData.items.length === 0 ? (
-            <EmptyState title="No Scenarios" description="Scenario briefs will appear after the next ingest cycle." />
+            <EmptyState title="暂无情景" description="下一轮数据入库后将呈现情景简报。" />
           ) : (
             <div className="space-y-4">
               {scenariosData.items.map((scenario: any) => (
                 <div key={scenario.id} className="rounded-xl border border-white/10 bg-white/5 p-4">
                   <p className="text-sm text-white">{scenario.name}</p>
                   <p className="text-xs text-fog/60 mt-2">{scenario.description}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-fog/50 mt-3">Drivers</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-fog/50 mt-3">驱动因素</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {scenario.drivers.map((driver: string) => (
                       <span key={driver} className="rounded-full bg-white/10 px-3 py-1 text-xs text-fog/70">
