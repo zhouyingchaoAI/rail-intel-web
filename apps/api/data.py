@@ -268,6 +268,29 @@ UPDATE_LOGS = [
     },
 ]
 
+CITY_BASICS = [
+    {"city_id": "beijing", "city_name": "北京", "region": "华北", "data_status": "待补充"},
+    {"city_id": "shanghai", "city_name": "上海", "region": "华东", "data_status": "待补充"},
+    {"city_id": "guangzhou", "city_name": "广州", "region": "华南", "data_status": "待补充"},
+    {"city_id": "shenzhen", "city_name": "深圳", "region": "华南", "data_status": "待补充"},
+    {"city_id": "chengdu", "city_name": "成都", "region": "西南", "data_status": "待补充"},
+    {"city_id": "chongqing", "city_name": "重庆", "region": "西南", "data_status": "待补充"},
+    {"city_id": "wuhan", "city_name": "武汉", "region": "华中", "data_status": "待补充"},
+    {"city_id": "hangzhou", "city_name": "杭州", "region": "华东", "data_status": "待补充"},
+    {"city_id": "nanjing", "city_name": "南京", "region": "华东", "data_status": "待补充"},
+    {"city_id": "tianjin", "city_name": "天津", "region": "华北", "data_status": "待补充"},
+    {"city_id": "xian", "city_name": "西安", "region": "西北", "data_status": "待补充"},
+    {"city_id": "suzhou", "city_name": "苏州", "region": "华东", "data_status": "待补充"},
+    {"city_id": "zhengzhou", "city_name": "郑州", "region": "华中", "data_status": "待补充"},
+    {"city_id": "qingdao", "city_name": "青岛", "region": "华东", "data_status": "待补充"},
+    {"city_id": "changsha", "city_name": "长沙", "region": "华中", "data_status": "待补充"},
+    {"city_id": "kunming", "city_name": "昆明", "region": "西南", "data_status": "待补充"},
+    {"city_id": "shenyang", "city_name": "沈阳", "region": "东北", "data_status": "待补充"},
+    {"city_id": "dalian", "city_name": "大连", "region": "东北", "data_status": "待补充"},
+    {"city_id": "fuzhou", "city_name": "福州", "region": "华东", "data_status": "待补充"},
+    {"city_id": "harbin", "city_name": "哈尔滨", "region": "东北", "data_status": "待补充"},
+]
+
 DASHBOARD_SUMMARY = {
     "as_of": datetime.utcnow().isoformat() + "Z",
     "network_health": 85.4,

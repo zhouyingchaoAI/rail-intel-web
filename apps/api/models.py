@@ -28,6 +28,28 @@ class City(Base):
     station_items: Mapped[list["Station"]] = relationship("Station", back_populates="city")
 
 
+class CityBasic(Base):
+    __tablename__ = "city_basics"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    city_id: Mapped[str] = mapped_column(String, nullable=False)
+    city_name: Mapped[str] = mapped_column(String, nullable=False)
+    region: Mapped[str] = mapped_column(String, nullable=False)
+    gdp_billion: Mapped[float | None] = mapped_column(Float, nullable=True)
+    population_10k: Mapped[float | None] = mapped_column(Float, nullable=True)
+    fiscal_revenue_billion: Mapped[float | None] = mapped_column(Float, nullable=True)
+    rail_invest_billion: Mapped[float | None] = mapped_column(Float, nullable=True)
+    rail_mileage_km: Mapped[float | None] = mapped_column(Float, nullable=True)
+    lines_open: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    lines_under_construction: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    daily_ridership_10k: Mapped[float | None] = mapped_column(Float, nullable=True)
+    passenger_intensity: Mapped[float | None] = mapped_column(Float, nullable=True)
+    modal_share: Mapped[float | None] = mapped_column(Float, nullable=True)
+    operator_name: Mapped[str | None] = mapped_column(String, nullable=True)
+    subsidy_billion: Mapped[float | None] = mapped_column(Float, nullable=True)
+    data_status: Mapped[str] = mapped_column(String, nullable=False, default="待补充")
+
+
 class Line(Base):
     __tablename__ = "lines"
 

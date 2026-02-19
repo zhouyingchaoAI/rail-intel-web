@@ -81,6 +81,31 @@ class UpdateLogList(BaseModel):
     items: list[UpdateLogOut]
 
 
+class CityBasicOut(BaseModel):
+    city_id: str
+    city_name: str
+    region: str
+    gdp_billion: float | None
+    population_10k: float | None
+    fiscal_revenue_billion: float | None
+    rail_invest_billion: float | None
+    rail_mileage_km: float | None
+    lines_open: int | None
+    lines_under_construction: int | None
+    daily_ridership_10k: float | None
+    passenger_intensity: float | None
+    modal_share: float | None
+    operator_name: str | None
+    subsidy_billion: float | None
+    data_status: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class CityBasicList(BaseModel):
+    items: list[CityBasicOut]
+
+
 class ScenarioMatrix(BaseModel):
     rows: list[str]
     columns: list[str]

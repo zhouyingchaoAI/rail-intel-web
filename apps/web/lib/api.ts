@@ -43,3 +43,7 @@ export async function getReports() {
 export async function getLogs() {
   return fetchJSON("/logs");
 }
+
+export async function getCityBasics() {
+  return fetchJSON("/city-basics");
+}

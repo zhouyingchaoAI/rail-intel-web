@@ -2,10 +2,12 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from data import CITIES, DASHBOARD_SUMMARY, MODULES, REPORTS, SCENARIOS, SCENARIO_MATRIX, UPDATE_LOGS
+from data import CITIES, CITY_BASICS, DASHBOARD_SUMMARY, MODULES, REPORTS, SCENARIOS, SCENARIO_MATRIX, UPDATE_LOGS
 from database import SessionLocal
-from models import City, Module, Report, Scenario, ScenarioMatrixCell, UpdateLog
+from models import City, CityBasic, Module, Report, Scenario, ScenarioMatrixCell, UpdateLog
 from schemas import (
+    CityBasicList,
+    CityBasicOut,
     CityList,
     CityOut,
     ModuleList,
@@ -116,6 +118,14 @@ async def matrix(db: Session = Depends(get_db)):
         for scenario in scenarios
     ]
     return {"rows": rows, "columns": columns, "cells": cells}
+
+
+@app.get("/city-basics", response_model=CityBasicList)
+async def city_basics(db: Session = Depends(get_db)):
+    items = db.query(CityBasic).order_by(CityBasic.city_name).all()
+    if not items:
+        return {"items": [CityBasicOut.model_validate(item) for item in CITY_BASICS]}
+    return {"items": items}
 
 
 @app.get("/reports", response_model=ReportList)
