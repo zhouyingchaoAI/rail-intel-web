@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCities } from "../../../lib/api";
+import { getCities } from "../../../../lib/api";
 
 export const dynamic = "force-dynamic";
 
