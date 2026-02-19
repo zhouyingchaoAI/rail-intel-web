@@ -14,9 +14,11 @@ cd apps/api
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+python seed_db.py
 uvicorn main:app --reload --port 8000
 ```
 
+The API uses a local SQLite database at `apps/api/rail_intel.db`. On startup it will auto-create tables and seed demo data if the database is empty. The `seed_db.py` script can be run manually to re-seed.
 ### Web
 ```bash
 cd apps/web
