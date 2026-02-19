@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { href: "/", label: "总览" },
   { href: "/cities", label: "城市概况" },
+  { href: "/compare", label: "城市对比" },
   { href: "/modules", label: "六大模块" },
   { href: "/matrix", label: "情景矩阵" },
   { href: "/reports", label: "报告中心" },

@@ -18,7 +18,18 @@ export default async function CitiesPage() {
       <Topbar />
       <Breadcrumbs items={[{ label: "首页", href: "/" }, { label: "城市" }]} />
       <section className="space-y-4">
-        <SectionHeader title="城市概况" subtitle="组合" />
+        <SectionHeader
+          title="城市概况"
+          subtitle="组合"
+          actions={
+            <a
+              href="/api/export/cities"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.2em] text-fog/70 hover:text-white"
+            >
+              导出 CSV
+            </a>
+          }
+        />
         {citiesData.items.length === 0 ? (
           <EmptyState title="暂无城市" description="数据源接入后将生成城市画像。" />
         ) : (
