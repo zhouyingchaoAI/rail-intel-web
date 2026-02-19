@@ -5,6 +5,8 @@ import SectionHeader from "../../components/SectionHeader";
 import EmptyState from "../../components/EmptyState";
 import { getMatrix, getScenarios } from "../../lib/api";
 
+export const dynamic = "force-dynamic";
+
 export default async function MatrixPage() {
   const matrix = await getMatrix();
   const scenariosData = await getScenarios();

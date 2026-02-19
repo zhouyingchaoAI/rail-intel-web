@@ -8,6 +8,8 @@ import EmptyState from "../../components/EmptyState";
 import { getModules } from "../../lib/api";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function ModulesPage() {
   const modulesData = await getModules();
   const totalModules = modulesData.items.length;

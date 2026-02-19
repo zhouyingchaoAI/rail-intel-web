@@ -10,6 +10,8 @@ import { getCity, getModules } from "../../../lib/api";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function CityDetailPage({ params }: { params: { cityId: string } }) {
   const city = await getCity(params.cityId);
   if (!city || city.error) {

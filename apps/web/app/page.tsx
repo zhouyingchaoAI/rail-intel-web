@@ -9,6 +9,8 @@ import EmptyState from "../components/EmptyState";
 import Link from "next/link";
 import { getDashboard, getCities } from "../lib/api";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const dashboard = await getDashboard();
   const citiesData = await getCities();

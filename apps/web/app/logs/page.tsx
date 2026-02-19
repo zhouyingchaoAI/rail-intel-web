@@ -6,6 +6,8 @@ import SectionHeader from "../../components/SectionHeader";
 import EmptyState from "../../components/EmptyState";
 import { getLogs } from "../../lib/api";
 
+export const dynamic = "force-dynamic";
+
 const statusTone: Record<string, "neutral" | "success" | "warning"> = {
   Success: "success",
   Warning: "warning",

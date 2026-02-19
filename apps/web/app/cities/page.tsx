@@ -7,6 +7,8 @@ import EmptyState from "../../components/EmptyState";
 import { getCities } from "../../lib/api";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function CitiesPage() {
   const citiesData = await getCities();
 
